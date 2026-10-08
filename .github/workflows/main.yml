@@ -27,13 +27,14 @@ jobs:
 
       - name: Copy Stonic files
         run: |
+          ls -la
           cp pubspec.yaml /tmp/app/pubspec.yaml
-          rm -rf /tmp/app/lib /tmp/app/test
-          cp -r lib /tmp/app/lib
+          rm -rf /tmp/app/test
+          cp main.dart /tmp/app/lib/main.dart
           K=/tmp/app/android/app/src/main/kotlin/com/example/jarvis_app
           mkdir -p "$K"
-          cp android/*.kt "$K/"
-          cp android/AndroidManifest.xml /tmp/app/android/app/src/main/AndroidManifest.xml
+          cp MainActivity.kt JarvisService.kt BootReceiver.kt "$K/"
+          cp AndroidManifest.xml /tmp/app/android/app/src/main/AndroidManifest.xml
 
       - name: Set minSdk 24
         run: |
